@@ -1,20 +1,27 @@
 <template lang="html">
   <div id="CheckedInGuests">
-    <div class="guests" v-for="guest in guests">
-      <h3>{{guest.name}}</h3>
-      <h4>{{guest.email}}</h4>
-      <p>{{guest.checkedin}}</p>
-      <!-- <button v-on:click="handleDelete(guest._id)">Delete Guest</button> -->
+    <div class="guests" v-for="(guest, index) in guests" index="id">
+      <h3>Guest Namae: {{guest.name}}</h3>
+      <h4>Guest E-mail: {{guest.email}}</h4>
+      <p>Status: {{guest.checkedin ? "Checked In":"Checked Out"}}</p>
+      <button type="button" v-on:click="guestDelete(guest._id)">Delete Guest</button>
     </div>
-
   </div>
 </template>
 
 <script>
 import { eventBus } from '../main';
 export default {
-  name: "CheckedinGuests"
-  props: ["guests"]
+  name: "CheckedinGuests",
+  props: ["guests"],
+  methods: {
+    guestDelete(id){
+      fetch('http://localhost:3000/api/bookings/' + id, {
+        method: "DELETE"
+      })
+      .then(() => eventBus.$emit('delete_guest', id))
+    }
+  }
 }
 </script>
 
