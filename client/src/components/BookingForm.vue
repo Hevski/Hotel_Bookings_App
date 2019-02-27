@@ -11,7 +11,7 @@
 		</div>
 		<div class="formWrap">
       <label for="checkedIn">Checked In:</label>
-      <input type="checkbox" v-model="checkedIn">
+      <input type="checkbox" id="checkedIn" v-model="checkedIn">
     </div>
 
 		<input type="submit" value="Add" id="Add"/>
@@ -32,6 +32,7 @@ export default {
 methods: {
   handleSubmit(event){
     event.preventDefault();
+    if (this.name === "" || this.email === "") return;
     const payload = {
       name: this.name,
       email: this.email,

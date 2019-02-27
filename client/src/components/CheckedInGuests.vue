@@ -1,10 +1,14 @@
 <template lang="html">
   <div id="CheckedInGuests">
     <div class="guests" v-for="(guest, index) in guests" index="id">
-      <h3>Guest Namae: {{guest.name}}</h3>
+      <h3>Guest Name: {{guest.name}}</h3>
       <h3>Guest E-mail: {{guest.email}}</h3>
+      <label>Checked in:</label>
       <p>Status: {{guest.checkedIn ? "Checked In":"Not Checked in"}}</p>
-      <button type="button" v-on:click="guestDelete(guest._id)">Delete Guest</button>
+      <input type="checkbox"
+             v-model="guest.checkedIn"
+             v-on:change="changeCheckedIn(guest._id, guest.checkedIn)">
+      <button v-on:click="guestDelete(guest._id)">Delete Guest</button>
     </div>
   </div>
 </template>
@@ -12,6 +16,11 @@
 <script>
 import { eventBus } from '../main';
 export default {
+  data () {
+    return {
+      guestsList: []
+    }
+  },
   name: "CheckedinGuests",
   props: ["guests"],
   methods: {
@@ -20,9 +29,22 @@ export default {
         method: "DELETE"
       })
       .then(() => eventBus.$emit('delete_guest', id))
+    },
+    changeCheckedIn(id, checkedStatus){
+
+      const newData = {
+        checkedIn: checkedStatus
+      }
+
+      fetch("http://localhost:3000/api/bookings/" + id, {
+        method: 'PUT',
+        body: JSON.stringify(newData),
+        headers: { "Content-Type": "application/json" }
+      })
     }
   }
 }
+
 </script>
 
 <style lang="css" scoped>

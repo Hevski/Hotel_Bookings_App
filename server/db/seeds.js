@@ -5,16 +5,16 @@ db.bookings.insertMany([
   {
     name: "Barry Rodgers",
     email: "Barry@hotmail.com",
-    checkedin: true
+    checkedIn: true
   },
   {
     name: "Jamie Toodle",
     email: "toodles@gmail.com",
-    checkedin: false
+    checkedIn: false
   },
   {
     name: "Samantha Sarti",
     email: "smartie@gmail.com",
-    checkedin: true
+    checkedIn: true
   }
 ]);
