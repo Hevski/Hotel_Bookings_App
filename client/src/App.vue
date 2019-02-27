@@ -38,6 +38,22 @@ export default {
   }
 }
 </script>
+<style lang="css">
+  body {
 
-<style lang="css" scoped>
+  }
+</style>
+
+<style>
+html {
+  height: 100%;
+}
+
+body {
+  /* background: url('./assets/images.jpeg') no-repeat; */
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>
