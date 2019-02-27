@@ -11,7 +11,7 @@
 		</div>
 		<div class="formWrap">
       <label for="checkedIn">Checked In:</label>
-      <input type="checkbox" value="checkedIn">
+      <input type="checkbox" v-model="checkedIn">
     </div>
 
 		<input type="submit" value="Add" id="Add"/>
@@ -26,7 +26,7 @@ export default {
   return {
     name: "",
     email: "",
-    checkedIn: true
+    checkedIn: false
   }
 },
 methods: {

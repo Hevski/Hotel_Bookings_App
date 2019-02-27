@@ -3,7 +3,7 @@
     <div class="guests" v-for="(guest, index) in guests" index="id">
       <h3>Guest Namae: {{guest.name}}</h3>
       <h4>Guest E-mail: {{guest.email}}</h4>
-      <p>Status: {{guest.checkedin ? "Checked In":"Checked Out"}}</p>
+      <p>Status: {{guest.checkedIn ? "Checked In":"Not Checked in"}}</p>
       <button type="button" v-on:click="guestDelete(guest._id)">Delete Guest</button>
     </div>
   </div>
